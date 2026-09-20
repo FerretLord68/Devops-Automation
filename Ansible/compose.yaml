@@ -1,0 +1,9 @@
+services:
+  ansible:
+    build: .
+    container_name: ansible
+    volumes:
+      - ./playbooks:/ansible/playbooks:ro
+      - ./inventory:/ansible/inventory
+    command: tail -f /dev/null
+    

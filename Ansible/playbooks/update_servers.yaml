@@ -1,0 +1,25 @@
+---
+- name: Update servers
+  hosts: all
+  become: yes
+  become_method: sudo
+  become_exe: /usr/bin/sudo.ws
+  tasks:
+    - name: Normal Update and Upgrade
+      ansible.builtin.apt:
+        update_cache: yes
+        upgrade: yes
+    - name: Full Upgrade
+      ansible.builtin.apt:
+        upgrade: full
+    - name: Remove unused packages
+      ansible.builtin.apt:
+        autoremove: yes
+        autoclean: yes
+    - name: install packages
+      ansible.builtin.apt:
+        name:
+          - vim
+          - btop
+          - iputils-ping
+        state: present
